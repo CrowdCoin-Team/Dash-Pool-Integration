@@ -37,8 +37,9 @@ username and password.
 If you are behind a NAT, you should enable TCP port forwarding on your
 router. Forward port 9998 to the host running P2Pool.
 
-If you get a twisted or abort connection error, try running
-     python run_p2pool.py -n
+If you get a twisted or abort connection error, try running:
+
+    python run_p2pool.py -n
 
 Run for additional options.
 
