@@ -4,7 +4,7 @@ import sys
 import zipfile
 import platform
 
-from distutils.core import setup
+from distutils.core import setup, Extension
 from distutils.sysconfig import get_python_lib
 import py2exe
 
@@ -17,6 +17,20 @@ import p2pool.networks
 extra_includes.extend('p2pool.networks.' + x for x in p2pool.networks.nets)
 import p2pool.dash.networks
 extra_includes.extend('p2pool.dash.networks.' + x for x in p2pool.dash.networks.nets)
+
+keccak_hash_module = Extension('keccak_hash',
+                                 sources = ['keccakmodule.c',
+                                            'keccakhash.c',
+                                            'sha3/keccak.c'],
+                               include_dirs=['.', './sha3'])
+
+setup (name = 'keccak_hash',
+       version = '1.4',
+       author = 'rc125',
+  	   author_email = 'rc125@protonmail.com',
+  	   url = 'https://github.com/rc125/python-keccak_hash',
+       description = 'Binding for keccak proof of work hashing.',
+       ext_modules = [keccak_hash_module])
 
 if os.path.exists('INITBAK'):
     os.remove('INITBAK')
